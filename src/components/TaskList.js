@@ -8,7 +8,7 @@ function TaskList({editableForm,handleEditableForm}) {
   return (
     <div className='border-2 border-green-500 w-1/2 max-h-[400px] overflow-y-auto flex flex-col gap-1'>
       {
-        todoList.map((todo)=>{
+        todoList.activeTasks.map((todo)=>{
           return <PerTask editableForm={editableForm} handleEditableForm={handleEditableForm} todo ={todo} key={todo.id}></PerTask>
         })
       }

@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import AddTask from './components/AddTask';
 import TaskList from './components/TaskList';
-import { deleteAll } from './redux/todo/actions/todoActions';
+import { deleteAll, deleteAllActive, deleteAllCompleted } from './redux/todo/actions/todoActions';
 import { useState } from 'react';
+import CompletedTask from './components/CompletedTask';
 
 function App() {
   console.log("App rendere")
@@ -21,7 +22,15 @@ function App() {
     
       <AddTask editableForm={editableForm}/>
       <TaskList editableForm={editableForm} handleEditableForm={handleEditableForm}/>
-      {todoList.length > 0 && ( <button className='bg-red-600 w-1/6 py-2 rounded-md text-white' onClick={()=>{dispatch(deleteAll())}}>Delete All</button>)}
+      
+      {todoList.activeTasks.length > 0 && ( <button className='bg-red-600 w-1/6 py-2 rounded-md text-white' onClick={()=>{dispatch(deleteAllActive())}}>Delete All Active Task</button>)}
+      
+      
+      <CompletedTask />
+      {todoList.completedTasks.length > 0 && ( <button className='bg-red-600 w-1/6 py-2 rounded-md text-white' onClick={()=>{dispatch(deleteAllCompleted())}}>Delete All Completed Task</button>)}
+      <div>
+      {todoList.completedTasks.length > 0 || todoList.activeTasks.length > 0  && ( <button className='bg-red-600 w-1/6 py-2 rounded-md text-white' onClick={()=>{dispatch(deleteAll())}}>Delete All Task</button>)}
+      </div>
       </div>
     </div>
     

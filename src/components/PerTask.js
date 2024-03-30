@@ -9,6 +9,7 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 function PerTask({ todo, editableForm, handleEditableForm }) {
     console.log("PerTask Redner")
     const dispatch = useDispatch()
+    console.log("todo OBj",todo)
     return (
         <div className='flex flex-row items-center gap-4 border-2 px-1 h-fit border-red-500'>
             <div className='bg-blue-200 border-3 border-gray-600'>
