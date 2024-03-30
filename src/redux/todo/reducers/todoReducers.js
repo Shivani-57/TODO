@@ -48,43 +48,37 @@ export const todoReducers = (state = initialState,action) =>{
 
             }
         case TOGGLE_COMPLETE:
-            console.log("IN toggle",action.payload)
-            console.log("In Index",state.activeTasks.findIndex((task)=> task.id === action.payload.id))
+            
             if(state.activeTasks.findIndex((task)=> task.id === action.payload.id) != -1){
                 const index = state.activeTasks.findIndex((task)=> task.id === action.payload.id)
-                console.log("active",index)
+                
                 state.activeTasks[index].completed=true
-                console.log(state.activeTasks[index].completed=true)
-                console.log("ccc",state.activeTasks[index])
+                
                 const taskToUpdate = state.activeTasks[index]
-                console.log("task to update",taskToUpdate)
+                
                 const updatedList = {
                     ...state,
                      activeTasks:state.activeTasks.filter(task => task.id !== taskToUpdate.id),
                      completedTasks:[...state.completedTasks,taskToUpdate] 
                 }
-                console.log(updatedList)
+               
                 return updatedList
 
             }
             else{
                 const index = state.completedTasks.findIndex((task)=> task.id === action.payload.id)
-                console.log("else index",index)
+                
                 state.completedTasks[index].completed=false
-                console.log("CT",state.completedTasks[index].completed=false)
-                console.log(state.completedTasks[index].completed)
-                console.log("se",state.completedTasks[index])
+               
                 // console.log("taskto Update", )
                 const taskToUpdate = state.completedTasks[index]
-                console.log("task to update",taskToUpdate)
-                console.log("ATasks",[...state.activeTasks,taskToUpdate])
-                console.log("Ctasks",state.completedTasks.filter(task => task.id !== taskToUpdate.id))
+                
                 const updatedList = {
                     ...state,
                      activeTasks:[...state.activeTasks,taskToUpdate],
                      completedTasks:state.completedTasks.filter(task => task.id !== taskToUpdate.id) 
                 }
-                console.log("Updated List",updatedList)
+                
                 return updatedList
             }   
             // console.log(index)
