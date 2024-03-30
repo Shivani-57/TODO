@@ -2,43 +2,40 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTodo } from '../redux/todo/actions/todoActions'
 import AddIcon from '@mui/icons-material/Add';
-function AddTask({editableForm}) {
+function AddTask() {
   console.log("addTask rendered")
   const dispatch = useDispatch()
-  const [addTodoValue,setAddTodoValue] = useState("")
+  const [addTodoValue, setAddTodoValue] = useState("")
 
   const handleSubmit = (e) => {
     e.preventDefault()
     let date = new Date();
     let time = date.getTime()
     let addTodoObj = {
-      id:time,
-      todo:addTodoValue,
-      completed:false
+      id: time,
+      todo: addTodoValue,
+      completed: false
     }
     dispatch(addTodo(addTodoObj))
     setAddTodoValue("")
   }
 
-  const handleEditSubmit =(e)=>{
+  const handleEditSubmit = (e) => {
     e.preventDefault()
 
   }
-  console.log("editableFomr",editableForm)
-  return (
-    <div className='border-2 border-blue-800 w-1/2   flex flex-col gap-6 justify-center items-center'>
-      <p className='text-sm sm:text-lg md:text-2xl lg:text-4xl font-serif '>Your Personal To-Do App</p>
 
-      {editableForm?( <form onSubmit={handleEditSubmit} className="flex flex-row gap-1">
-            <input type='text' className='border-2 border-slate-500 px-1 rounded-md w-96' name='addTodo' value={addTodoValue} placeholder='Add Task' onChange={(e)=>{setAddTodoValue(e.target.value)}} />
-            <button type='submit 'className='bg-red-500 rounded-md px-2 py-1 w-14'>Update</button>
-        </form>):( <form onSubmit={handleSubmit} className="flex flex-row gap-1 py-1">
-            <input className='border-2 border-slate-500 px-1 rounded-md w-96' type='text' name='addTodo' value={addTodoValue} placeholder='Add Task' onChange={(e)=>{setAddTodoValue(e.target.value)}} />
-            <button type='submit' className='bg-red-500 rounded-md px-2 py-1 w-14'><AddIcon /></button>
-        </form>)}
-     
-        
+  return (
+    <div class='w-full md:w-1/2 flex flex-col gap-6 justify-center items-center px-4'>
+      <p class='text-lg md:text-xl lg:text-xl xl:text-4xl font-serif font-medium'>Your Personal To-Do App</p>
+
+      <form onSubmit={handleSubmit} class="flex flex-col md:flex-row gap-2 md:gap-4 py-1 w-full md:w-auto">
+        <input class='border-2 border-gray-400 px-3 py-1 rounded-md w-full md:w-72 focus:outline-none focus:border-blue-500' type='text' name='addTodo' value={addTodoValue} placeholder='Add Task' onChange={(e) => { setAddTodoValue(e.target.value) }} />
+        <button type='submit' class='bg-blue-500 rounded-md font-medium px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:bg-blue-600 transition duration-300 w-full md:w-auto'>Add Task</button>
+      </form>
     </div>
+
+
   )
 }
 

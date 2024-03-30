@@ -6,23 +6,20 @@ import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import RadioButtonUncheckedRoundedIcon from '@mui/icons-material/RadioButtonUncheckedRounded';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
-function PerTask({ todo, editableForm, handleEditableForm }) {
+function PerTask({ todo}) {
     console.log("PerTask Redner")
     const dispatch = useDispatch()
     console.log("todo OBj",todo)
     return (
-        <div className='flex flex-row items-center gap-4 border-2 px-1 h-fit border-red-500'>
-            <div className='bg-blue-200 border-3 border-gray-600'>
-                {todo.completed ? (<CheckCircleRoundedIcon onClick={() => { dispatch(toggleComplete(todo)) }} />) :
-                    (<RadioButtonUncheckedRoundedIcon onClick={() => { dispatch(toggleComplete(todo)) }} />)}
+        <div className='p-3  bg-gray-200 rounded-md flex flex-row items-center gap-4 h-fit'>
+            <div className=''>
+                {todo.completed ? (<CheckCircleRoundedIcon className='!w-7 !h-7 !text-green-600 !accent-green-600' onClick={() => { dispatch(toggleComplete(todo)) }} />) :
+                    (<RadioButtonUncheckedRoundedIcon className='!w-7 !h-7 !text-blue-500 !accent-blue-500' onClick={() => { dispatch(toggleComplete(todo)) }} />)}
             </div>
-            <div className={`flex-grow whitespace-normal text-xl min-h-[1.25rem]  bg-blue-200 border-3 ${todo.completed && 'text-gray-400'}`}>
+            <div className={`flex-grow whitespace-normal text-xl min-h-[1.25rem] border-3 ${todo.completed && 'text-gray-400'}`}>
                 {todo.todo}
             </div>
-
-            {/* <div className='bg-blue-200 border-3 border-gray-600'>{todo.completed ? "✅" : "❌"}</div> */}
-            {/* <div className='bg-blue-200 border-3 border-gray-600'><button onClick={handleEditableForm} >Edit</button></div> */}
-            <div className='bg-red-500 w-10 rounded-sm'><button onClick={() => { dispatch(deleteOne(todo)) }}><DeleteForeverRoundedIcon style={{ color: 'white' }} /></button></div>
+            <div className='bg-red-500 p-1 flex justify-center items-center  rounded-sm'><button onClick={() => { dispatch(deleteOne(todo)) }}><DeleteForeverRoundedIcon style={{ color: 'white' }} /></button></div>
         </div>
     )
 }
